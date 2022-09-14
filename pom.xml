@@ -163,24 +163,22 @@
 				<groupId>io.github.deweyjose</groupId>
 				<artifactId>graphqlcodegen-maven-plugin</artifactId>
 				<version>1.23</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
 				<configuration>
 					<generateClient>true</generateClient>
 					<generateDataTypes>true</generateDataTypes>
 					<outputDir>${project.build.directory}/generated-sources/graphql</outputDir>
-					<packageName>com.example.batteryprice.model.graphql;</packageName>
+					<packageName>com.example.batteryprice.model.graphql</packageName>
 					<schemaPaths>
 						<param>${project.basedir}/src/main/resources/schema/schema.graphqls</param>
 					</schemaPaths>
-					<typeMapping>
-						<PositiveInt>java.lang.Integer</PositiveInt>
-						<UUID>java.util.UUID</UUID>
-						<ObjectId>org.bson.types.ObjectId</ObjectId>
-					</typeMapping>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -200,6 +198,7 @@
 				</executions>
 			</plugin>
 		</plugins>
+
 	</build>
 
 

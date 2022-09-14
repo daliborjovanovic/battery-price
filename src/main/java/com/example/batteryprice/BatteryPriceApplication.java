@@ -10,11 +10,11 @@ import org.springframework.web.reactive.function.client.WebClient;
 @SpringBootApplication
 public class BatteryPriceApplication {
 
-
+	 private static final String URL = "http://localhost:8088";
 
 	@Bean
 	public WebClient createWebClient() {
-		 return WebClient.builder().baseUrl("http://localhost:8088").build();
+		 return WebClient.builder().baseUrl(URL).build();
 	}
 	@Bean
 	public ModelMapper modelMapper() {

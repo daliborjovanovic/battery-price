@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: com.example.batteryprice.service.BatteriesPriceServiceTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.165 s <<< FAILURE! - in com.example.batteryprice.service.BatteriesPriceServiceTest
+countPriceTest  Time elapsed: 0.156 s  <<< ERROR!
+org.springframework.web.reactive.function.client.WebClientRequestException: Connection refused: localhost/127.0.0.1:8088; nested exception is io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: localhost/127.0.0.1:8088
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: localhost/127.0.0.1:8088
+Caused by: java.net.ConnectException: Connection refused
+

@@ -1,0 +1,7 @@
+/Users/daliborjovanovic/battery/src/test/java/com/example/batteryprice/repository/BatteryRepositoryTest.java
+/Users/daliborjovanovic/battery/src/test/java/com/example/batteryprice/datafetchers/BatteryDatafetcherTest.java
+/Users/daliborjovanovic/battery/src/test/java/com/example/batteryprice/webclient/WebClientTest.java
+/Users/daliborjovanovic/battery/src/test/java/com/example/batteryprice/controller/BatteryControllerTest.java
+/Users/daliborjovanovic/battery/src/test/java/com/example/batteryprice/consumer/ConsumerTest.java
+/Users/daliborjovanovic/battery/src/test/java/com/example/batteryprice/service/BatteriesPriceServiceTest.java
+/Users/daliborjovanovic/battery/src/test/java/com/example/batteryprice/BatteryPriceApplicationTests.java

@@ -19,6 +19,6 @@ public class BatteryRepo{
 
 
     public Battery find(String name) {
-        return (Battery) mongoTemplate.findOne(Query.query(Criteria.where("batteryName").is(name)), Battery.class);
+        return  mongoTemplate.findOne(Query.query(Criteria.where("batteryName").is(name)), Battery.class);
     }
 }

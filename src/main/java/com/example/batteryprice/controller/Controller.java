@@ -6,6 +6,9 @@ import com.example.batteryprice.model.Battery;
 import com.example.batteryprice.model.User;
 import com.example.batteryprice.repository.UserRepo;
 import com.example.batteryprice.service.BatteryRepo;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,15 +16,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@Data
+
+
 class BatteryController {
-    @Autowired
-    BatteryRepo batteryRepo;
-
-    @Autowired
-    UserRepo userRepo;
-
-    @Autowired
-    BatteryDatafetcher batteryDatafetcher;
+    private final BatteryRepo batteryRepo;
+    private final UserRepo userRepo;
+    private final BatteryDatafetcher batteryDatafetcher;
 
     @GetMapping
     public @ResponseBody Battery findBattery(@RequestParam String name) {

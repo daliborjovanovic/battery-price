@@ -1,0 +1,26 @@
+
+type Query {
+    allBatteries: [Battery]
+}
+
+type Mutation {
+    saveBattery(batteryInput:BatteryInput):Battery
+}
+
+input BatteryInput {
+    price: Float
+    batteryName: String
+}
+
+type Battery {
+    id: ID
+    price: Float
+    batteryName: String
+
+}
+
+schema {
+    query: Query
+    mutation: Mutation
+
+}

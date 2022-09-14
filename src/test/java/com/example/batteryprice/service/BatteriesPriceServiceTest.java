@@ -43,7 +43,7 @@ public class BatteriesPriceServiceTest {
 
     @Test
     void countPriceTest() throws Exception {
-        List<String> batteriesNames = Arrays.asList("batt1", "batt2", "batt3");
+        List<String> batteriesNames = List.of("batt1", "batt2", "batt3");
         BatteriesInRangeDto batteriesInRangeDto = BatteriesInRangeDto.builder()
                 .batteries(batteriesNames)
                 .totalCapacity(600.0)
@@ -51,10 +51,10 @@ public class BatteriesPriceServiceTest {
                 .build();
         Battery battery = Battery.builder()
                 .batteryName("batt1")
-                .price(3.5*600)
+                .price(2100)
                 .build();
        Battery bat = service.getValueAndCalculatePrice(batteriesInRangeDto);
-       verify(repo.save(bat));
+       verify(repo).save(bat);
 
     }
 

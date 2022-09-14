@@ -7,10 +7,7 @@ import com.example.batteryprice.model.graphql.types.BatteryInput;
 import com.example.batteryprice.repository.BatteriesPriceRepository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,34 +22,34 @@ import java.util.List;
 @Data
 @Log4j2
 @Builder
+@NonNull
 public class BatteriesPriceService {
- private final double KOEFICIJENT = 3.5;
+ private final double COEFFICIENT = 3.5;
 
-    @Autowired
-    BatteriesPriceRepository repo;
 
-    @Autowired
-    ModelMapper modelMapper;
-    @Autowired
-    WebClient webClient;
+    private BatteriesPriceRepository repo;
 
-    @Autowired
-    ObjectMapper objectMapper;
+
+    private ModelMapper modelMapper;
+
+    private WebClient webClient;
+
+
+    private ObjectMapper objectMapper;
 
     public Battery getValueAndCalculatePrice(BatteriesInRangeDto batteriesDto) throws Exception  {
-       KWPriceDto kwPriceDto = getValueRestCall();
-       log.info("Consumer, new kwprice {}", getValueRestCall());
+       //KWPriceDto kwPriceDto = getValueRestCall();
+       //log.info("Consumer, new kwprice {}", kwPriceDto);
 
         Battery battery = new Battery();
         try {
-            battery.setPrice(kwPriceDto.getPriceKw() * batteriesDto.getTotalCapacity());
+            battery.setPrice(COEFFICIENT * batteriesDto.getTotalCapacity());
             battery.setBatteryName(batteriesDto.getBatteries().get(0));
             repo.save(battery);
-            return battery;
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            return battery;
         }
+        return battery;
 
     }
 

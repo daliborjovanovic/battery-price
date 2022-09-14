@@ -11,6 +11,9 @@ import com.example.batteryprice.model.graphql.types.BatteryInput;
 import com.example.batteryprice.service.BatteriesPriceService;
 import com.netflix.graphql.dgs.DgsQueryExecutor;
 import com.netflix.graphql.dgs.autoconfig.DgsAutoConfiguration;
+import com.netflix.graphql.dgs.client.codegen.BaseProjectionNode;
+import com.netflix.graphql.dgs.client.codegen.BaseSubProjectionNode;
+import com.netflix.graphql.dgs.client.codegen.GraphQLQuery;
 import com.netflix.graphql.dgs.client.codegen.GraphQLQueryRequest;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
@@ -91,20 +94,14 @@ class BatteryDatafetcherTest {
 
        Mockito.when(service.getAllBatteries()).thenReturn(savedBatteries);
 
-       var graphQLQuery = new GraphQLQueryRequest(
-               AllBatteriesGraphQLQuery.newRequest().build(),
-               new AllBatteriesProjectionRoot().id()
-       );
+        GraphQLQueryRequest graphQLQuery;
+        graphQLQuery = new GraphQLQueryRequest(
+                 AllBatteriesGraphQLQuery.newRequest().build(),
+                new AllBatteriesProjectionRoot().id()
+        );
 
-      List<Battery> batteries = dgsQueryExecutor.executeAndExtractJsonPath(
-              "\n" +
-              "{\n" +
-              "  allBatteries {\n" +
-              "    id\n" +
-              "    price\n" +
-              "    batteryName\n" +
-              "  }\n" +
-              "}\n", "data.allBatteries");
+        List<Battery> batteries = dgsQueryExecutor.executeAndExtractJsonPath(
+            graphQLQuery.serialize(), "data.allBatteries");
       assertEquals(batteries.size(), savedBatteries.size());
     }
 }

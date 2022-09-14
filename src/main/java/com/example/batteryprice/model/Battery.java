@@ -21,7 +21,6 @@ import javax.persistence.Id;
 public class Battery {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private ObjectId id;
     @NonNull
     private double price;

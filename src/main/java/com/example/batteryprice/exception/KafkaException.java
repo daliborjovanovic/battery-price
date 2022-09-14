@@ -18,7 +18,7 @@ public class KafkaException implements KafkaListenerErrorHandler {
     public Object handleError(Message<?> message, ListenerExecutionFailedException e) {
         log.warn("Total capacity is not valid, {}", e.getMessage());
 
-        if (e.getCause() instanceof RuntimeException) {
+        if (e.getCause() instanceof Exception) {
             throw e;
         }
         return null;

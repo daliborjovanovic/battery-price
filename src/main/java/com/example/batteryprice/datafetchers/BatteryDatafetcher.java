@@ -29,13 +29,11 @@ public class BatteryDatafetcher {
 
 
     @DgsQuery
-    @Secured({"user", "admin"})
     public List<Battery> allBatteries() {
         return service.getAllBatteries();
     }
 
     @DgsMutation
-    @Secured("admin")
     public Battery saveBattery(@InputArgument("batteryInput") BatteryInput batteryInput) throws Exception {
       return service.createBattery(batteryInput);
     }

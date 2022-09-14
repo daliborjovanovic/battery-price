@@ -1,0 +1,7 @@
+com/example/batteryprice/repository/BatteryRepositoryTest.class
+com/example/batteryprice/consumer/ConsumerTest.class
+com/example/batteryprice/webclient/WebClientTest.class
+com/example/batteryprice/controller/BatteryControllerTest.class
+com/example/batteryprice/datafetchers/BatteryDatafetcherTest.class
+com/example/batteryprice/BatteryPriceApplicationTests.class
+com/example/batteryprice/service/BatteriesPriceServiceTest.class

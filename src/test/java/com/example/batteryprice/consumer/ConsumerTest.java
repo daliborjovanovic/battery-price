@@ -53,11 +53,8 @@ class ConsumerTest {
 
     @Test
     public void shouldConsumeMessage() throws Exception {
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         BatteriesInRangeDto batteriesInRangeDto = new BatteriesInRangeDto();
-        String message = ow.writeValueAsString(batteriesInRangeDto);
-        Mockito.when(objectMapper.readValue(message, BatteriesInRangeDto.class)).thenReturn(batteriesInRangeDto);
-        kafkaConsumer.consumeMessage(message);
+        kafkaConsumer.consumeMessage(batteriesInRangeDto);
         Mockito.verify(service).getValueAndCalculatePrice(batteriesInRangeDto);
 
     }
