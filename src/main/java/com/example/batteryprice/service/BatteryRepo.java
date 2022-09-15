@@ -3,6 +3,7 @@ package com.example.batteryprice.service;
 import com.example.batteryprice.model.Battery;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -11,10 +12,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Data
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BatteryRepo{
 
-    @Autowired
+
     MongoTemplate mongoTemplate;
 
 

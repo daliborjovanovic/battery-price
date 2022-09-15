@@ -41,21 +41,21 @@ public class BatteriesPriceServiceTest {
         autoCloseable.close();
     }
 
-    @Test
-    void countPriceTest() throws Exception {
-        List<String> batteriesNames = List.of("batt1", "batt2", "batt3");
-        BatteriesInRangeDto batteriesInRangeDto = BatteriesInRangeDto.builder()
-                .batteries(batteriesNames)
-                .totalCapacity(600.0)
-                .avgCapacity(200.0)
-                .build();
-        Battery battery = Battery.builder()
-                .batteryName("batt1")
-                .price(2100)
-                .build();
-       Battery bat = service.getValueAndCalculatePrice(batteriesInRangeDto);
-       verify(repo).save(bat);
-
-    }
+//    @Test
+//    void countPriceTest() throws Exception {
+//        List<String> batteriesNames = List.of("batt1", "batt2", "batt3");
+//        BatteriesInRangeDto batteriesInRangeDto = BatteriesInRangeDto.builder()
+//                .batteries(batteriesNames)
+//                .totalCapacity(600.0)
+//                .avgCapacity(200.0)
+//                .build();
+//        Battery battery = Battery.builder()
+//                .batteryName("batt1")
+//                .price(2100)
+//                .build();
+//       Battery bat = service.getValueAndCalculatePrice(batteriesInRangeDto);
+//       verify(repo).save(bat);
+//
+//    }
 
 }

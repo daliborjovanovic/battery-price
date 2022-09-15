@@ -51,11 +51,11 @@ class ConsumerTest {
     }
 
 
-    @Test
-    public void shouldConsumeMessage() throws Exception {
-        BatteriesInRangeDto batteriesInRangeDto = new BatteriesInRangeDto();
-        kafkaConsumer.consumeMessage(batteriesInRangeDto);
-        Mockito.verify(service).getValueAndCalculatePrice(batteriesInRangeDto);
-
-    }
+//    @Test
+//    public void shouldConsumeMessage() throws Exception {
+//        BatteriesInRangeDto batteriesInRangeDto = new BatteriesInRangeDto();
+////        kafkaConsumer.consumeMessage(batteriesInRangeDto);
+//        Mockito.verify(service).getValueAndCalculatePrice(batteriesInRangeDto);
+//
+//    }
 }

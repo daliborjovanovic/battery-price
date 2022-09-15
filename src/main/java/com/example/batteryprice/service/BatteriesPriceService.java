@@ -3,6 +3,7 @@ package com.example.batteryprice.service;
 import com.example.batteryprice.dto.BatteriesInRangeDto;
 import com.example.batteryprice.dto.KWPriceDto;
 import com.example.batteryprice.model.Battery;
+import com.example.batteryprice.model.PriceOperation;
 import com.example.batteryprice.model.graphql.types.BatteryInput;
 import com.example.batteryprice.repository.BatteriesPriceRepository;
 
@@ -22,28 +23,26 @@ import java.util.List;
 @Data
 @Log4j2
 @Builder
-@NonNull
 public class BatteriesPriceService {
- private final double COEFFICIENT = 3.5;
 
 
+    @Autowired
     private BatteriesPriceRepository repo;
-
-
+    @Autowired
     private ModelMapper modelMapper;
-
+    @Autowired
     private WebClient webClient;
-
+    @Autowired
 
     private ObjectMapper objectMapper;
 
-    public Battery getValueAndCalculatePrice(BatteriesInRangeDto batteriesDto) throws Exception  {
-       //KWPriceDto kwPriceDto = getValueRestCall();
-       //log.info("Consumer, new kwprice {}", kwPriceDto);
+    public Battery getValueAndCalculatePrice(BatteriesInRangeDto batteriesDto, PriceOperation priceOperation) throws Exception  {
+       KWPriceDto kwPriceDto = getValueRestCall(priceOperation);
+       log.info("Consumer, new kwprice {}", kwPriceDto);
 
         Battery battery = new Battery();
         try {
-            battery.setPrice(COEFFICIENT * batteriesDto.getTotalCapacity());
+            battery.setPrice(kwPriceDto.getPriceKw() * batteriesDto.getTotalCapacity());
             battery.setBatteryName(batteriesDto.getBatteries().get(0));
             repo.save(battery);
         } catch (Exception e) {
@@ -53,11 +52,11 @@ public class BatteriesPriceService {
 
     }
 
-    public KWPriceDto getValueRestCall() {
+    public KWPriceDto getValueRestCall(PriceOperation priceOperation) {
         return webClient
                 .get().
-                uri("/priceKw").
-                retrieve()
+                uri("/"+priceOperation.toString())
+                .retrieve()
                 .bodyToMono(KWPriceDto.class)
                 .block();
     }

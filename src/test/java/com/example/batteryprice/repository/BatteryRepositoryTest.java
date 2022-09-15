@@ -21,8 +21,6 @@ public class BatteryRepositoryTest {
     @Spy
     BatteriesPriceRepository repo;
 
-
-
     @Test
     void saveTest() {
 

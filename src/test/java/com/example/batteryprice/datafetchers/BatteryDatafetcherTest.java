@@ -49,16 +49,6 @@ class BatteryDatafetcherTest {
     @MockBean
     BatteriesPriceService service;
 
-    AutoCloseable autoCloseable;
-
-//    @BeforeEach
-//    void setup() {
-//        autoCloseable = MockitoAnnotations.openMocks(this);
-//    }
-//    @AfterEach
-//    void teardown() throws Exception {
-//        autoCloseable.close();
-//    }
 
 
 

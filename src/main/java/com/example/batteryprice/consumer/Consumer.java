@@ -2,6 +2,7 @@ package com.example.batteryprice.consumer;
 
 import com.example.batteryprice.dto.BatteriesInRangeDto;
 import com.example.batteryprice.exception.KafkaException;
+import com.example.batteryprice.model.PriceOperation;
 import com.example.batteryprice.service.BatteriesPriceService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ser.std.StringSerializer;
@@ -12,6 +13,7 @@ import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
@@ -43,33 +45,34 @@ public class Consumer {
     KafkaProperties kafkaProperties;
     @Autowired
     KafkaException kafkaException;
+    @Autowired
+    ModelMapper modelMapper;
 
 
     @Bean
-    private ConsumerFactory<String, BatteriesInRangeDto> consumerFactory() {
+    private ConsumerFactory<String, KafkaMessage> consumerFactory() {
        Map<String, Object> props = kafkaProperties.buildConsumerProperties();
-        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
         props.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
         props.put(JsonDeserializer.USE_TYPE_INFO_HEADERS, "false");
-        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(),
-                new JsonDeserializer<>(BatteriesInRangeDto.class));
+                new JsonDeserializer<>(KafkaMessage.class));
     }
 
     @KafkaListener(topics = "battery-price", errorHandler = "kafkaException")
-    public void consumeMessage(BatteriesInRangeDto batteriesInRangeDto) throws Exception {
-        log.info("Consumer consume msg");
+    public void consumeMessage(KafkaMessage message) throws Exception {
+        log.info("Consumer consume msg: "+message);
+        BatteriesInRangeDto batteriesInRangeDto = modelMapper.map(message.getPayload(), BatteriesInRangeDto.class);
+        PriceOperation priceOperation = message.getOperation();
         if (batteriesInRangeDto.getTotalCapacity()>100000000) {
             throw new RuntimeException("failed");
         }
-        service.getValueAndCalculatePrice(batteriesInRangeDto);
+        service.getValueAndCalculatePrice(batteriesInRangeDto, priceOperation);
 
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, BatteriesInRangeDto> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, BatteriesInRangeDto> factory =
+    public ConcurrentKafkaListenerContainerFactory<String, KafkaMessage> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, KafkaMessage> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         return factory;
