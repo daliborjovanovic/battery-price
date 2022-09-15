@@ -1,6 +1,7 @@
 package com.example.batteryprice.webclient;
 
 import com.example.batteryprice.dto.KWPriceDto;
+import com.example.batteryprice.model.PriceOperation;
 import com.example.batteryprice.service.BatteriesPriceService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -47,27 +48,27 @@ public class WebClientTest {
     }
 
 
-//    @Test
-//    void getValueRestCallTest() {
-//
-//        KWPriceDto kwPriceDto = new KWPriceDto(200);
-//
-//        WebClient.ResponseSpec responseSpecMock = mock(WebClient.ResponseSpec.class);
-//        WebClient.RequestBodyUriSpec requestBodyUriSpecMock = mock(WebClient.RequestBodyUriSpec.class);
-//        WebClient.RequestHeadersUriSpec requestHeadersUriSpecMock = mock(WebClient.RequestHeadersUriSpec.class);
-//
-//        Mockito.when(webClient.get()).thenReturn(requestHeadersUriSpecMock);
-//        Mockito.when(requestHeadersUriSpecMock.uri("/priceKw")).thenReturn(requestHeadersSpecMock);
-//        Mockito.when(requestHeadersSpecMock.retrieve()).thenReturn(responseSpecMock);
-//        Mockito.when(responseSpecMock.bodyToMono(KWPriceDto.class)).thenReturn(Mono.just(kwPriceDto));
-//
-//        KWPriceDto kwPriceDtoMono = service.getValueRestCall();
-//
-//        Assertions.assertEquals(kwPriceDto, kwPriceDtoMono);
-//
-//
-//
-//
-//    }
+    @Test
+    void getValueRestCallTest() {
+
+        KWPriceDto kwPriceDto = new KWPriceDto(200);
+
+        WebClient.ResponseSpec responseSpecMock = mock(WebClient.ResponseSpec.class);
+        WebClient.RequestBodyUriSpec requestBodyUriSpecMock = mock(WebClient.RequestBodyUriSpec.class);
+        WebClient.RequestHeadersUriSpec requestHeadersUriSpecMock = mock(WebClient.RequestHeadersUriSpec.class);
+
+        Mockito.when(webClient.get()).thenReturn(requestHeadersUriSpecMock);
+        Mockito.when(requestHeadersUriSpecMock.uri("/MEDIUM")).thenReturn(requestHeadersSpecMock);
+        Mockito.when(requestHeadersSpecMock.retrieve()).thenReturn(responseSpecMock);
+        Mockito.when(responseSpecMock.bodyToMono(KWPriceDto.class)).thenReturn(Mono.just(kwPriceDto));
+
+        KWPriceDto kwPriceDtoMono = service.getValueRestCall(PriceOperation.MEDIUM);
+
+        Assertions.assertEquals(kwPriceDto, kwPriceDtoMono);
+
+
+
+
+    }
 
 }

@@ -4,8 +4,10 @@ package com.example.batteryprice.service;
 
 import com.example.batteryprice.dto.BatteriesInRangeDto;
 import com.example.batteryprice.model.Battery;
+import com.example.batteryprice.model.PriceOperation;
 import com.example.batteryprice.repository.BatteriesPriceRepository;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -41,21 +43,23 @@ public class BatteriesPriceServiceTest {
         autoCloseable.close();
     }
 
-//    @Test
-//    void countPriceTest() throws Exception {
-//        List<String> batteriesNames = List.of("batt1", "batt2", "batt3");
-//        BatteriesInRangeDto batteriesInRangeDto = BatteriesInRangeDto.builder()
-//                .batteries(batteriesNames)
-//                .totalCapacity(600.0)
-//                .avgCapacity(200.0)
-//                .build();
-//        Battery battery = Battery.builder()
-//                .batteryName("batt1")
-//                .price(2100)
-//                .build();
-//       Battery bat = service.getValueAndCalculatePrice(batteriesInRangeDto);
-//       verify(repo).save(bat);
-//
-//    }
+    @Test
+    void countPriceTest() throws Exception {
+        PriceOperation operation = PriceOperation.HIGH;
+        List<String> batteriesNames = List.of("batt1", "batt2", "batt3");
+        BatteriesInRangeDto batteriesInRangeDto = BatteriesInRangeDto.builder()
+                .batteries(batteriesNames)
+                .totalCapacity(600.0)
+                .avgCapacity(200.0)
+                .build();
+        Battery batteryToCreate = Battery.builder()
+                .batteryName("batt1")
+                .price(9000)
+                .build();
+       Battery battery = service.getValueAndCalculatePrice(batteriesInRangeDto, operation);
+       Assertions.assertEquals(battery.getPrice(),  batteryToCreate.getPrice());
+       Assertions.assertEquals(battery.getBatteryName(), batteryToCreate.getBatteryName());
+
+    }
 
 }
