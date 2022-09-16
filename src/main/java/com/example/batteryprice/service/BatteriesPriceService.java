@@ -54,8 +54,8 @@ public class BatteriesPriceService {
 
     public KWPriceDto getValueRestCall(PriceOperation priceOperation) {
         return webClient
-                .get().
-                uri("/"+priceOperation.toString())
+                .get()
+                .uri("/price?operation="+priceOperation.toString())
                 .retrieve()
                 .bodyToMono(KWPriceDto.class)
                 .block();

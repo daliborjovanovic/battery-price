@@ -49,25 +49,60 @@ public class WebClientTest {
 
 
     @Test
-    void getValueRestCallTest() {
+    void getLowValueRestCallTest() {
 
-        KWPriceDto kwPriceDto = new KWPriceDto(200);
+        KWPriceDto kwPriceDto = new KWPriceDto(5);
 
         WebClient.ResponseSpec responseSpecMock = mock(WebClient.ResponseSpec.class);
         WebClient.RequestBodyUriSpec requestBodyUriSpecMock = mock(WebClient.RequestBodyUriSpec.class);
         WebClient.RequestHeadersUriSpec requestHeadersUriSpecMock = mock(WebClient.RequestHeadersUriSpec.class);
 
         Mockito.when(webClient.get()).thenReturn(requestHeadersUriSpecMock);
-        Mockito.when(requestHeadersUriSpecMock.uri("/MEDIUM")).thenReturn(requestHeadersSpecMock);
+        Mockito.when(requestHeadersUriSpecMock.uri("/price?operation=LOW")).thenReturn(requestHeadersSpecMock);
+        Mockito.when(requestHeadersSpecMock.retrieve()).thenReturn(responseSpecMock);
+        Mockito.when(responseSpecMock.bodyToMono(KWPriceDto.class)).thenReturn(Mono.just(kwPriceDto));
+
+        KWPriceDto kwPriceDtoMono = service.getValueRestCall(PriceOperation.LOW);
+
+        Assertions.assertEquals(kwPriceDto.getPriceKw(), kwPriceDtoMono.getPriceKw());
+
+    }
+    @Test
+    void getMediumValueRestCallTest() {
+
+        KWPriceDto kwPriceDto = new KWPriceDto(10);
+
+        WebClient.ResponseSpec responseSpecMock = mock(WebClient.ResponseSpec.class);
+        WebClient.RequestBodyUriSpec requestBodyUriSpecMock = mock(WebClient.RequestBodyUriSpec.class);
+        WebClient.RequestHeadersUriSpec requestHeadersUriSpecMock = mock(WebClient.RequestHeadersUriSpec.class);
+
+        Mockito.when(webClient.get()).thenReturn(requestHeadersUriSpecMock);
+        Mockito.when(requestHeadersUriSpecMock.uri("/price?operation=MEDIUM")).thenReturn(requestHeadersSpecMock);
         Mockito.when(requestHeadersSpecMock.retrieve()).thenReturn(responseSpecMock);
         Mockito.when(responseSpecMock.bodyToMono(KWPriceDto.class)).thenReturn(Mono.just(kwPriceDto));
 
         KWPriceDto kwPriceDtoMono = service.getValueRestCall(PriceOperation.MEDIUM);
 
-        Assertions.assertEquals(kwPriceDto, kwPriceDtoMono);
+        Assertions.assertEquals(kwPriceDto.getPriceKw(), kwPriceDtoMono.getPriceKw());
 
+    }
+    @Test
+    void getHighValueRestCallTest() {
 
+        KWPriceDto kwPriceDto = new KWPriceDto(15);
 
+        WebClient.ResponseSpec responseSpecMock = mock(WebClient.ResponseSpec.class);
+        WebClient.RequestBodyUriSpec requestBodyUriSpecMock = mock(WebClient.RequestBodyUriSpec.class);
+        WebClient.RequestHeadersUriSpec requestHeadersUriSpecMock = mock(WebClient.RequestHeadersUriSpec.class);
+
+        Mockito.when(webClient.get()).thenReturn(requestHeadersUriSpecMock);
+        Mockito.when(requestHeadersUriSpecMock.uri("/price?operation=HIGH")).thenReturn(requestHeadersSpecMock);
+        Mockito.when(requestHeadersSpecMock.retrieve()).thenReturn(responseSpecMock);
+        Mockito.when(responseSpecMock.bodyToMono(KWPriceDto.class)).thenReturn(Mono.just(kwPriceDto));
+
+        KWPriceDto kwPriceDtoMono = service.getValueRestCall(PriceOperation.HIGH);
+
+        Assertions.assertEquals(kwPriceDto.getPriceKw(), kwPriceDtoMono.getPriceKw());
 
     }
 

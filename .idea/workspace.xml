@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f3cdb633-aaf9-4d28-b76f-51aebddb383a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/batteryprice/consumer/KafkaMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/batteryprice/consumer/KafkaMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/batteryprice/consumer/ConsumerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/batteryprice/consumer/ConsumerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/batteryprice/service/BatteriesPriceServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/batteryprice/service/BatteriesPriceServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/batteryprice/BatteryPriceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/batteryprice/BatteryPriceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/batteryprice/service/BatteriesPriceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/batteryprice/service/BatteriesPriceService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/example/batteryprice/webclient/WebClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/batteryprice/webclient/WebClientTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,83 +57,83 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "nodejs_package_manager_path": "npm",
-    "spring.configuration.checksum": "9ac22bb40b76f536543dfb663a64cdeb"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;9ac22bb40b76f536543dfb663a64cdeb&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
-  <component name="RunManager" selected="JUnit.WebClientTest.getValueRestCallTest">
-    <configuration name="BatteriesPriceServiceTest.countPriceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.WebClientTest.getHighValueRestCallTest">
+    <configuration name="WebClientTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="battery-price" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.batteryprice.service.*" />
+          <option name="PATTERN" value="com.example.batteryprice.webclient.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.example.batteryprice.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.batteryprice.service.BatteriesPriceServiceTest" />
-      <option name="METHOD_NAME" value="countPriceTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BatteryDatafetcherTest.allBatteriesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="battery-price" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.batteryprice.datafetchers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.batteryprice.datafetchers" />
-      <option name="MAIN_CLASS_NAME" value="com.example.batteryprice.datafetchers.BatteryDatafetcherTest" />
-      <option name="METHOD_NAME" value="allBatteriesTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BatteryDatafetcherTest.saveBatteryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="battery-price" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.batteryprice.datafetchers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.batteryprice.datafetchers" />
-      <option name="MAIN_CLASS_NAME" value="com.example.batteryprice.datafetchers.BatteryDatafetcherTest" />
-      <option name="METHOD_NAME" value="saveBatteryTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BatteryRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="battery-price" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.batteryprice.repository.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.batteryprice.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.example.batteryprice.repository.BatteryRepositoryTest" />
+      <option name="PACKAGE_NAME" value="com.example.batteryprice.webclient" />
+      <option name="MAIN_CLASS_NAME" value="com.example.batteryprice.webclient.WebClientTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebClientTest.getHighValueRestCallTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="battery-price" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.batteryprice.webclient.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.batteryprice.webclient" />
+      <option name="MAIN_CLASS_NAME" value="com.example.batteryprice.webclient.WebClientTest" />
+      <option name="METHOD_NAME" value="getHighValueRestCallTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebClientTest.getLowValueRestCallTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="battery-price" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.batteryprice.webclient.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.batteryprice.webclient" />
+      <option name="MAIN_CLASS_NAME" value="com.example.batteryprice.webclient.WebClientTest" />
+      <option name="METHOD_NAME" value="getLowValueRestCallTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebClientTest.getMediumValueRestCallTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="battery-price" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.batteryprice.webclient.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.batteryprice.webclient" />
+      <option name="MAIN_CLASS_NAME" value="com.example.batteryprice.webclient.WebClientTest" />
+      <option name="METHOD_NAME" value="getMediumValueRestCallTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -164,11 +163,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.WebClientTest.getHighValueRestCallTest" />
+        <item itemvalue="JUnit.WebClientTest.getMediumValueRestCallTest" />
+        <item itemvalue="JUnit.WebClientTest.getLowValueRestCallTest" />
+        <item itemvalue="JUnit.WebClientTest" />
         <item itemvalue="JUnit.WebClientTest.getValueRestCallTest" />
-        <item itemvalue="JUnit.BatteriesPriceServiceTest.countPriceTest" />
-        <item itemvalue="JUnit.BatteryRepositoryTest" />
-        <item itemvalue="JUnit.BatteryDatafetcherTest.allBatteriesTest" />
-        <item itemvalue="JUnit.BatteryDatafetcherTest.saveBatteryTest" />
       </list>
     </recent_temporary>
   </component>
@@ -180,7 +179,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1663224568773</updated>
-      <workItem from="1663224570627" duration="16265000" />
+      <workItem from="1663224570627" duration="17104000" />
+      <workItem from="1663311222759" duration="2281000" />
     </task>
     <servers />
   </component>
