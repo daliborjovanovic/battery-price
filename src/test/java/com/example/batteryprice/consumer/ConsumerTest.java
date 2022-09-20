@@ -6,15 +6,11 @@ import com.example.batteryprice.model.PriceOperation;
 import com.example.batteryprice.service.BatteriesPriceService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import kafka.common.KafkaException;
 import org.apache.kafka.clients.consumer.MockConsumer;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +24,9 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
+
 @ExtendWith(MockitoExtension.class)
 class ConsumerTest {
 
@@ -35,7 +34,6 @@ class ConsumerTest {
     @Mock
     BatteriesPriceService service;
     @InjectMocks
-    @Autowired
     Consumer kafkaConsumer;
 
     @Mock
@@ -68,5 +66,21 @@ class ConsumerTest {
         kafkaConsumer.consumeMessage(message);
         Mockito.verify(service).getValueAndCalculatePrice(batteriesInRangeDto, message.getOperation());
 
+    }
+    @Test
+    void shouldThrowExceptionWhenConsumeInvalidMessage() throws Exception {
+        KafkaMessage message = KafkaMessage.builder()
+                .eventId(UUID.randomUUID())
+                .operation(PriceOperation.HIGH)
+                .payload(BatteriesInRangeDto.builder()
+                        .avgCapacity(200)
+                        .totalCapacity(11000)
+                        .batteries(new ArrayList<>())
+                        .build())
+                .build();
+        BatteriesInRangeDto batteriesInRangeDto = (BatteriesInRangeDto) message.getPayload();
+        Mockito.when(modelMapper.map(message.getPayload(), BatteriesInRangeDto.class)).thenReturn(batteriesInRangeDto);
+        RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> kafkaConsumer.consumeMessage(message));
+        assertEquals("Total capacity is over the limit", exception.getMessage());
     }
 }

@@ -3,7 +3,6 @@ server:
 spring:
   kafka:
     consumer:
-
       "bootstrap.servers": localhost:9092
       "enable.auto.commit": true
       "max.poll.records": 500
@@ -19,6 +18,7 @@ spring:
       key-deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
       value-deserializer: "org.springframework.kafka.support.serializer.JsonDeserializer"
       auto-offset-reset: earliest
+
     containerFactory:
       concurrency: 1
       decrypt-messages: false

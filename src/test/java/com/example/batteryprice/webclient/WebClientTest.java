@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 
 
@@ -58,7 +59,7 @@ public class WebClientTest {
         WebClient.RequestHeadersUriSpec requestHeadersUriSpecMock = mock(WebClient.RequestHeadersUriSpec.class);
 
         Mockito.when(webClient.get()).thenReturn(requestHeadersUriSpecMock);
-        Mockito.when(requestHeadersUriSpecMock.uri("/price?operation=LOW")).thenReturn(requestHeadersSpecMock);
+        Mockito.when(requestHeadersUriSpecMock.uri(any(String.class))).thenReturn(requestHeadersSpecMock);
         Mockito.when(requestHeadersSpecMock.retrieve()).thenReturn(responseSpecMock);
         Mockito.when(responseSpecMock.bodyToMono(KWPriceDto.class)).thenReturn(Mono.just(kwPriceDto));
 
@@ -77,7 +78,7 @@ public class WebClientTest {
         WebClient.RequestHeadersUriSpec requestHeadersUriSpecMock = mock(WebClient.RequestHeadersUriSpec.class);
 
         Mockito.when(webClient.get()).thenReturn(requestHeadersUriSpecMock);
-        Mockito.when(requestHeadersUriSpecMock.uri("/price?operation=MEDIUM")).thenReturn(requestHeadersSpecMock);
+        Mockito.when(requestHeadersUriSpecMock.uri(any(String.class))).thenReturn(requestHeadersSpecMock);
         Mockito.when(requestHeadersSpecMock.retrieve()).thenReturn(responseSpecMock);
         Mockito.when(responseSpecMock.bodyToMono(KWPriceDto.class)).thenReturn(Mono.just(kwPriceDto));
 

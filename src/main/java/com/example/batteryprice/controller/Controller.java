@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @Data
-
+@AllArgsConstructor
 
 class BatteryController {
     private final BatteryRepo batteryRepo;

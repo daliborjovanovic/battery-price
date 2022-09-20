@@ -8,7 +8,9 @@ import com.example.batteryprice.repository.BatteriesPriceRepository;
 import com.example.batteryprice.service.BatteriesPriceService;
 import com.netflix.graphql.dgs.*;
 import com.netflix.graphql.dgs.DgsMutation;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -17,15 +19,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @DgsComponent
-@Builder
+@Data
+@AllArgsConstructor
 public class BatteryDatafetcher {
 
 
-    @Autowired
-    BatteriesPriceService service;
 
-    @Autowired
-    ModelMapper modelMapper;
+   private BatteriesPriceService service;
+   private ModelMapper modelMapper;
 
 
     @DgsQuery

@@ -32,27 +32,21 @@ import java.util.Map;
 
 @Service
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 @Log4j2
 public class Consumer {
 
-    @Autowired
-    ObjectMapper objectMapper;
-    @Autowired
-    BatteriesPriceService service;
-    @Autowired
-    KafkaProperties kafkaProperties;
-    @Autowired
-    KafkaException kafkaException;
-    @Autowired
-    ModelMapper modelMapper;
+
+    private BatteriesPriceService service;
+    private KafkaProperties kafkaProperties;
+
+    private KafkaException kafkaException;
+    private ModelMapper modelMapper;
 
 
     @Bean
     private ConsumerFactory<String, KafkaMessage> consumerFactory() {
        Map<String, Object> props = kafkaProperties.buildConsumerProperties();
-        props.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
         props.put(JsonDeserializer.USE_TYPE_INFO_HEADERS, "false");
         return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(),
                 new JsonDeserializer<>(KafkaMessage.class));
@@ -63,8 +57,8 @@ public class Consumer {
         log.info("Consumer consume msg: "+message);
         BatteriesInRangeDto batteriesInRangeDto = modelMapper.map(message.getPayload(), BatteriesInRangeDto.class);
         PriceOperation priceOperation = message.getOperation();
-        if (batteriesInRangeDto.getTotalCapacity()>100000000) {
-            throw new RuntimeException("failed");
+        if (batteriesInRangeDto.getTotalCapacity()>10000) {
+            throw new RuntimeException("Total capacity is over the limit");
         }
         service.getValueAndCalculatePrice(batteriesInRangeDto, priceOperation);
 

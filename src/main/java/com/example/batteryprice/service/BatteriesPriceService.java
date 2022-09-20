@@ -14,26 +14,25 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.util.UriBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @Service
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
 @Log4j2
 @Builder
 public class BatteriesPriceService {
 
 
-    @Autowired
+    @NonNull
     private BatteriesPriceRepository repo;
-    @Autowired
+    @NonNull
     private ModelMapper modelMapper;
-    @Autowired
+    @NonNull
     private WebClient webClient;
-    @Autowired
-
+    @NonNull
     private ObjectMapper objectMapper;
 
     public Battery getValueAndCalculatePrice(BatteriesInRangeDto batteriesDto, PriceOperation priceOperation) throws Exception  {
@@ -55,7 +54,9 @@ public class BatteriesPriceService {
     public KWPriceDto getValueRestCall(PriceOperation priceOperation) {
         return webClient
                 .get()
-                .uri("/price?operation="+priceOperation.toString())
+                .uri(uriBuilder -> uriBuilder
+                        .queryParam("operation", priceOperation.toString())
+                        .build())
                 .retrieve()
                 .bodyToMono(KWPriceDto.class)
                 .block();

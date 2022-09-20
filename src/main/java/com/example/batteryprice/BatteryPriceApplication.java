@@ -10,7 +10,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 @SpringBootApplication
 public class BatteryPriceApplication {
 
-	 private static final String URL = "https://f98781a9-94fd-462d-8469-89b7b894e980.mock.pstmn.io";
+	private static final String URL = "https://f98781a9-94fd-462d-8469-89b7b894e980.mock.pstmn.io/price";
 
 	@Bean
 	public WebClient createWebClient() {
